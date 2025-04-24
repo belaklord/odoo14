@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+ 
+    <template id="totalpuntos" inherit_id="website_sale.total">
+
+      <xpath expr="//div[@id='cart_total']//table/tr[last()]" position="after">
+         <t t-if="website.name == 'Versum'">
+        <tr>
+            <td colspan="3" class="text-center text-xl-right border-0">
+          <form t-att-action="'/shop/puntos'" method="post" name="coupon_code">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <div class="input-group w-100">
+                        <input name="puntos" class="form-control" type="text" placeholder="Canjea tus puntos..." />
+                    <div class="input-group-append">
+                    <a href="#" role="button" class="btn btn-secondary a-submit">Canjear</a>
+                </div>
+
+               
+            </div>
+             <span style="font-size: 12px;">Mínimo 100 puntos (sólo multiplos de 50)</span>
+           
+        </form>
+        <!-- mensaje de error "Descuento ya usado" -->
+         <t t-if="request.params.get('error_puntos')" name="code_not_available">
+            <div class="alert alert-danger text-left" role="alert">Ya hay descuento aplicado.</div>
+        </t>
+
+        <!-- mensaje de error "Descuento mayor que 50% pedido" -->
+         <t t-if="request.params.get('error_puntos_mayor_pedido')" name="code_not_available">
+            <div class="alert alert-danger text-left" role="alert">Descuento mayor que 50% pedido.</div>
+        </t>
+
+        <!-- mensaje de error "Puntos insuficientes" -->
+         <t t-if="request.params.get('error_puntos_insuficientes')" name="code_not_available">
+            <div class="alert alert-danger text-left" role="alert">Cantidad erronea.</div>
+        </t>
+
+      </td>
+    </tr>
+</t>
+            </xpath>
+        
+
+    </template>
+
+</odoo>
