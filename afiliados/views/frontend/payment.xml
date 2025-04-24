@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+ 
+    <template id="totalpuntos" inherit_id="website_sale.total">
+
+      <xpath expr="//div[@id='cart_total']//table/tr[last()]" position="after">
+         <t t-if="website.name == 'Versum'">
+        <tr>
+            <td colspan="3" class="text-center text-xl-right border-0">
+          <form t-att-action="'/shop/afiliado'" method="post" name="afiliado_code">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <div class="input-group w-100">
+                        <input name="codigo" class="form-control" type="text" placeholder="Código de creador..." />
+                    <div class="input-group-append">
+                    <a href="#" role="button" class="btn btn-secondary a-submit">Aplicar</a>
+                </div>
+            </div>
+           
+        </form>
+        <!-- mensaje de error "Descuento ya usado" -->
+         <t t-if="request.params.get('error_codigo')" name="code_not_available">
+            <div class="alert alert-danger text-left" role="alert">Código incorrecto.</div>
+        </t>
+
+        <t t-if="request.params.get('codigo_aplicado')" name="code_not_available">
+            <div class="alert alert-info text-left" role="alert">Código aplicado.</div>
+        </t>
+
+      </td>
+    </tr>
+</t>
+            </xpath>
+        
+
+    </template>
+
+
+
+</odoo>
