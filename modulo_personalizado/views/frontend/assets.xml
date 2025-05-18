@@ -1,4 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    
+    <!-- heredamos la plantilla del formulario de contacto, ocultamos el campo telefono
+        gestionamos los valores de los campos, añadimos el campo seleccionable, fuente.
+     -->
+	<template id="fuentes_de_contecto" inherit_id="website_form.contactus_form">
+
+        <xpath expr="//div/section[1]/div[1]/form[1]/div[1]/div[2]" position="replace">
+
+                <field name="Phone" invisible="1"/>
+
+        </xpath>
+
+
+    	 <xpath expr="//span[@data-for='contactus_form']" position="attributes">
+
+                
+                <attribute name="t-att-data-values">{
+                    'fuente': request.params.get('fuente', ''),
+                    'contact_name': request.params.get('contact_name', ''),
+                    'phone': request.params.get('phone', ''),
+                    'email_from': request.params.get('email_from', ''),
+                    'partner_name': request.params.get('partner_name', ''),
+                    'name': request.params.get('name', ''),
+                    'description': request.params.get('description', ''),
+                }</attribute>
+            </xpath>
+             <xpath expr="//div[hasclass('s_website_form_submit')]" position="before">
+               <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="opportunity1">
+                                                <span class="s_website_form_label_content">Fuente</span>
+                                                
+
+                                                
+                                            </label> 
+                <select class="form-control" name="fuente">
+                   <option t-attf-value="'terceros'">Terceros</option>
+                   <option t-attf-value="'redes'">Redes Sociales</option>
+                   <option t-attf-value="'internet'">Budsqueda en internet</option>
+                </select>
+
+            </xpath>
+
+    </template>
+
+
+
 </odoo>

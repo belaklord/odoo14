@@ -6,14 +6,18 @@
     'summary': 'Modulo personalizado',
     'category': 'Tools',
     'depends': [
-        
+        'crm',
+        'sale',
+        'website_blog',
     ],
     'data': [
-        #'data/product.xml',
-        #'data/geo_localize_partner.xml',
+        
 
         # backend
-        'views/backend/res_config.xml',
+        'views/backend/crm.xml',
+        'views/backend/botonSaleOrder.xml',
+        'views/backend/blog.xml',
+
 
         # frontend
         'views/frontend/assets.xml',

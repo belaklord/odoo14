@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- boton el pedido para que ejecuta el método para eliminar las lineas a cero -->
+    <record model="ir.ui.view" id="view_order_form">
+        <field name="name">custom.SaleOrder.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']" position="before">
+                <button name="action_delete" type="object" widget="statinfo" string="Limpiar Líneas" t-on-click="buttonClicked"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

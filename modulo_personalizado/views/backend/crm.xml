@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--campo fuente en el formulario backend del CRM -->
+    <record id="Crm_selection" model="ir.ui.view">
+        <field name="name">crm.lead.form.fuentes</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="before">
+                
+                <field name="fuente"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!--campo compañía para el formulario del bog -->
+     <record id="blog_compnia" model="ir.ui.view">
+        <field name="name">blog.blog.form.compania</field>
+        <field name="model">blog.blog</field>
+        <field name="inherit_id" ref="website_blog.view_blog_blog_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                
+                <field name="companyia"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!--campo compañía no editable para el formulario del post de blog relacionado -->
+    <record id="blog_compnia_noticia" model="ir.ui.view">
+        <field name="name">blog.post.form.compania</field>
+        <field name="model">blog.post</field>
+        <field name="inherit_id" ref="website_blog.view_blog_post_form"/>
+        <field name="arch" type="xml">
+            
+
+            <xpath expr="//field[@name='name']" position="after">
+                
+                <field name="companyia_blog"/>
+            </xpath>
+
+        </field>
+    </record>
+
+
+     
+
+</odoo>
